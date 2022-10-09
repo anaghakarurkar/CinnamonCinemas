@@ -9,11 +9,11 @@ namespace CinnamonTheatre.Models.Layout
 {
     public class CinnamonTheatreLayout : ISeatingLayout
     {
-        public IDictionary<char, IList<ISeat>> _seatingArea { get; private set; }
+        public IDictionary<char, IList<ISeat>> SeatingArea { get; private set; }
         private const int STARTING_ROW_NAME = 65;
         public CinnamonTheatreLayout()
         {
-            _seatingArea = new Dictionary<char, IList<ISeat>>();
+            SeatingArea = new Dictionary<char, IList<ISeat>>();
         }
         public bool CreateSeatingArea(int rows, int columns)
         {
@@ -23,13 +23,12 @@ namespace CinnamonTheatre.Models.Layout
                 IList<ISeat> seatsInARow = new List<ISeat>();
                 for (int column = 0; column < columns; column++)
                 {
-                    seatsInARow.Add(new FoldBackSeat(column+1, true));
+                    seatsInARow.Add(new FoldBackSeat(column + 1, true));
                 }
-                _seatingArea.Add((char)currentRowName, seatsInARow);
+                SeatingArea.Add((char)currentRowName, seatsInARow);
                 currentRowName++;
             }
-            Console.WriteLine(_seatingArea.Count);
-            return _seatingArea.Count > 0;
+            return SeatingArea.Count > 0;
         }
 
         public bool CreateSeatingArea(int[] rows, int[] columns)
